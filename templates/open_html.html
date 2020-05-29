@@ -1,0 +1,9 @@
+{% if url %}
+<script>
+    window.open('{{ url }}', '_self')
+</script>
+{% else %}
+<script>
+    window.open('/', '_self')
+</script>
+{% endif %}

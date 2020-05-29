@@ -2,14 +2,36 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/style.css') }}" />
     <meta charset="UTF-8">
     <title>Python之书</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/style.css') }}" />
+    <script src="{{ url_for('static', path='message_area.js') }}"></script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+    <script>
+        function update_iframe(url) {
+            document.getElementById('document_view').src = url;
+
+        }
+    </script>
+    <style>
+        ul a {
+            color: green;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Python之书-首页</h1>
-    <a href="">发现了一个Bug?现在报告</a>
+    <a href="https://gitter.im/Python_NoBug_Book/Debug">发现了一个Bug?现在报告</a>
+    <h2></h2>
+    <div class="sidebarwrapper" style="float: left; margin-right: 0px; width: auto; top: 0px;">
+        <ul>
+            <!--width: 210px-->
+            {% for name, url in docs.items() %}
+            <a style="float: left;" onclick="update_iframe('/document/{{ url }}')" href="javascript: void(0)">{{ name }}</a><br> {% endfor %}
+        </ul>
+    </div>
+    <iframe src="/document/index.html" id='document_view' style="background-color: lightblue;" scrolling='auto' seamless width="80%" height="1000"></iframe>
 </body>
 
 </html>

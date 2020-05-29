@@ -1,6 +1,15 @@
-h1{
+h1 {
     color: red;
 }
-body{
+
+body {
     background-color: lightgoldenrodyellow;
+}
+
+a {
+    color: green;
+}
+
+ul a {
+    color: green;
 }
