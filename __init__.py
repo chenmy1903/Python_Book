@@ -6,7 +6,6 @@ from starlette.requests import Request
 import os
 import uvicorn
 from pygments import highlight
-from pygments.lexers.python import PythonLexer
 from pygments.lexers import get_lexer_for_filename
 from pygments.formatters.html import HtmlFormatter
 
