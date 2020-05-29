@@ -63,8 +63,13 @@ def code_color(request: Request, code_color_file_name: str = None, css_name: str
     return code_temp_templates.TemplateResponse(out_file_name.split('/')[-1].
                                                 replace('.' + out_file_name.split('.')[-1], '.html'), {'request': request})
 
+def clear_temp():
+    for file_name in os.listdir(os.path.join(BASE_DIR, 'templates', 'document', 'temp')):
+        os.remove(os.path.join(BASE_DIR, 'templates', 'document', 'temp', file_name))
+
 
 def run_server(app: FastAPI = app, port: int = 8887):
+    clear_temp()
     uvicorn.run(app, port=port)
 
 
