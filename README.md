@@ -1,3 +1,5 @@
-写的文档放在word_docs里边
-
-看看using.png
+# Python No Bug Book
+Open:
+```powershell
+python __init__.py
+```
