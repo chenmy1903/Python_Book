@@ -28,11 +28,13 @@ docs = {
     '安装Python': 'install_python.html',
     'print语句': 'print_function.html',
     'input语句': 'input_function.html',
+    'range函数': 'range_function.html',
 }
 
 
 @app.get('/', description='Python书主页')
 def index(request: Request):
+    clear_temp()
     return templates.TemplateResponse('index.html', {'request': request, 'docs': docs})
 
 
@@ -41,7 +43,7 @@ def document(request: Request, doc_html_name: str = 'index.html'):
     return document_templates.TemplateResponse(doc_html_name, {'request': request})
 
 
-@app.get('/open_html')
+@app.get('/open_html/')
 def open_html(request: Request, url: str = None):
     return templates.TemplateResponse('open_html.html', {"request": request, 'url': url})
 
