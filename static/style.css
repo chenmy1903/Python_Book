@@ -6,8 +6,11 @@ body {
     background-color: lightgoldenrodyellow;
 }
 
-a {
+a.color_link {
     color: green;
+}
+a {
+    color: red;
 }
 
 ul a {

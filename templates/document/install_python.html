@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>安装Python</title>
+</head>
+
+<body>
+    <ul>
+        <li>1: 访问Python官网 (https://www.python.org/)</li>
+        <button type="button" onclick="window.open('https:/www.python.org/')">点击此处打开Python官网</button><br>
+        <img src="{{ url_for('static', path='python_org.png') }}">
+        <li>2: 下载Python</li>
+        <button type="button"
+            onclick="window.open('https:/www.python.org/ftp/python/3.7.7/python-3.7.7-amd64.exe')">单击此处下载教程使用的Python
+            3.7</button>
+        <li>3: 安装Python</li>
+        <p>按下Install now按钮</p>
+        <h3>
+            <pre>
+注意!
+一定要勾选Add Python to path。
+    </pre>
+        </h3>
+    </ul>
+</body>
+
+</html>

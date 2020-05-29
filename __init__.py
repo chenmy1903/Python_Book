@@ -24,7 +24,10 @@ code_temp_templates = Jinja2Templates(
 document_templates = Jinja2Templates(
     os.path.join(BASE_DIR, 'templates', 'document'))
 docs = {
-    '首页': 'index.html'
+    '首页': 'index.html',
+    '安装Python': 'install_python.html',
+    'print语句': 'print_function.html',
+    'input语句': 'input_function.html',
 }
 
 
