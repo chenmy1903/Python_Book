@@ -29,6 +29,8 @@ docs = {
     'print语句': 'print_function.html',
     'input语句': 'input_function.html',
     'range函数': 'range_function.html',
+    'if语句': 'if_statements.html',
+    'for语句': 'for_statements.html'
 }
 
 
