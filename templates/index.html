@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Python之书</title>
+    <title>Python秘籍</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/style.css') }}" />
     <script src="{{ url_for('static', path='message_area.js') }}"></script>
     <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
@@ -21,18 +21,22 @@
 </head>
 
 <body>
-    <h1>Python秘籍</h1>
+    <h1 id='top'>Python秘籍</h1>
     <a href="https:/gitter.im/Python_NoBug_Book/Debug" class="color_link">发现了一个Bug?现在报告</a><br><br>
     <button type="button" onclick="window.open('https:/github.com/chenmy1903/Python_Book')">项目的GitHub页面</button>
     <h2></h2>
-    <div class="sidebarwrapper" style="float: left; margin-right: 0px; width: auto; top: 0px;">
+    <div class="sidebar" style="float: left; margin-right: 0px; width: auto; top: 0px;">
         <ul>
             <!--width: 210px-->
             {% for name, url in docs.items() %}
-            <a style="float: left;" onclick="update_iframe('/document/{{ url }}')" href="javascript: void(0)">{{ name }}</a><br> {% endfor %}
+            <li><a style="float: left;" onclick="update_iframe('/document/{{ url }}')"
+                    href="javascript: void(0)">{{ name }}</a></li>
+            {% endfor %}
         </ul>
     </div>
-    <iframe src="/document/index.html" id='document_view' style="background-color: lightblue;" scrolling='auto' seamless width="80%" height="1000"></iframe>
+    <iframe src="/document/index.html" id='document_view' style="background-color: lightblue;" scrolling='auto' seamless
+        width="80%" height="1000"></iframe><br>
+    <a href="#top" class="color_link">返回顶部</a>
 </body>
 
 </html>
