@@ -55,7 +55,7 @@ def code_color(request: Request, code_color_file_name: str = None, css_name: str
         return templates.TemplateResponse('open_html.html', {'request': request, 'url': ''})
     with open(os.path.join(BASE_DIR, 'static', code_color_file_name), encoding='utf-8') as f:
         code = f.read()
-    return_data = f'<title>{code_color_file_name}</title><h5>{code_color_file_name}</h5>' \
+    return_data = f'<title>{code_color_file_name}</title>File name: <b>{code_color_file_name}</b><br><br>' \
         + '<style type="text/css">\n' + \
         HtmlFormatter(style=css_name).get_style_defs('.highlight') + "</style>" + \
         highlight(code, get_lexer_for_filename(code_color_file_name),
@@ -70,6 +70,10 @@ def code_color(request: Request, code_color_file_name: str = None, css_name: str
     return code_temp_templates.TemplateResponse(out_file_name.split('/')[-1].
                                                 replace('.' + out_file_name.split('.')[-1], '.html'), {'request': request})
 
+
+# @app.get('/favicon.ico')
+def favicon_icon(request: Request):
+    return templates.TemplateResponse('open_html.html', {'request': request, 'url': '/static/favicon.png'})
 
 def clear_temp():
     for file_name in os.listdir(os.path.join(BASE_DIR, 'templates', 'document', 'temp')):
