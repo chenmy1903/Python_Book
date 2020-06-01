@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Python秘籍</title>
+    <link rel="icon" href="{{ url_for('static', path='favicon.png') }}" type="image/png">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/style.css') }}" />
     <script src="{{ url_for('static', path='message_area.js') }}"></script>
     <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
     <script>
         function update_iframe(url) {
             document.getElementById('document_view').src = url;
-
         }
     </script>
     <style>
@@ -35,8 +35,8 @@
             {% endfor %}
         </ul>
     </div>
-    <iframe src="/document/index.html" id='document_view' style="background-color: lightblue; " scrolling='auto' seamless
-        width="80%" height="1000"></iframe><br>
+    <iframe src="/document/index.html" id='document_view' style="background-color: lightblue; " scrolling='auto'
+        seamless width="80%" height="1000"></iframe><br>
 </body>
 
 </html>
