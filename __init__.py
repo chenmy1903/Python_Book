@@ -4,6 +4,7 @@ from starlette.templating import Jinja2Templates
 from starlette.staticfiles import StaticFiles
 from starlette.requests import Request
 import os
+import sys
 import uvicorn
 from pygments import highlight
 from pygments.lexers import get_lexer_for_filename
@@ -29,7 +30,8 @@ docs = {
     'input语句': 'input_function.html',
     'range函数': 'range_function.html',
     'if语句': 'if_statements.html',
-    'for语句': 'for_statements.html'
+    'for语句': 'for_statements.html',
+    'tkinter Gui设计': 'tkinter_gui.html',
 }
 
 
@@ -71,9 +73,17 @@ def code_color(request: Request, code_color_file_name: str = None, css_name: str
                                                 replace('.' + out_file_name.split('.')[-1], '.html'), {'request': request})
 
 
-# @app.get('/favicon.ico')
+@app.get('/command/{command_name}')
+def command(request: Request, command_name: str):
+    if command_name == 'IDLE':
+        exec_file = os.path.join(sys.exec_prefix, 'pythonw')
+        os.system(f'start {exec_file} -m idlelib')
+    return templates.TemplateResponse('close.html', {'request': request})
+
+@app.get('/favicon.ico')
 def favicon_icon(request: Request):
     return templates.TemplateResponse('open_html.html', {'request': request, 'url': '/static/favicon.png'})
+
 
 def clear_temp():
     for file_name in os.listdir(os.path.join(BASE_DIR, 'templates', 'document', 'temp')):
