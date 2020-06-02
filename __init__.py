@@ -19,6 +19,8 @@ __version__ = '0.0.1'
 app = FastAPI(title='Python秘籍', description='没有Bug的Python电子书',
               version=__version__)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if not os.path.isfile(os.path.join(BASE_DIR, 'templates', 'document', 'temp')):
+    os.mkdir(os.path.join(BASE_DIR, 'templates', 'document', 'temp'))
 app.mount('/static', StaticFiles(directory=os.path.join(BASE_DIR,
                                                         'static')), name='static')
 templates = Jinja2Templates(os.path.join(BASE_DIR, 'templates'))
@@ -71,7 +73,8 @@ def python_doc_help(request: Request, fun_name: str = None):
             f = '不是模块。'
     return templates.TemplateResponse('show_text.html',
                                       {'request': request, 'text': (f'原文件地址: {f}\n\n' + (pydoc.getdoc(m) if m
-                                       else '未找到此包或函数名。')) if not m or pydoc.getdoc(m) else f'{fun_name}无文档',
+                                                                                         else '未找到此包或函数名。'))
+                                       if not m or pydoc.getdoc(m) else f'原文件地址: {f}\n\n{fun_name}无文档',
                                        'title': fun_name + '的文档'})
 
 
