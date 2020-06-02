@@ -19,7 +19,7 @@ __version__ = '0.0.1'
 app = FastAPI(title='Python秘籍', description='没有Bug的Python电子书',
               version=__version__)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-if not os.path.isfile(os.path.join(BASE_DIR, 'templates', 'document', 'temp')):
+if not os.path.isdir(os.path.join(BASE_DIR, 'templates', 'document', 'temp')):
     os.mkdir(os.path.join(BASE_DIR, 'templates', 'document', 'temp'))
 app.mount('/static', StaticFiles(directory=os.path.join(BASE_DIR,
                                                         'static')), name='static')
