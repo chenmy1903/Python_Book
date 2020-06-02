@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{{ url_for('static', path='favicon.png') }}" type="image/png">
+    <title>Python秘籍 - Python包\模块帮助</title>
+    <script>
+        function update_iframe() {
+            document.getElementById('view').src = '/python_doc/module_docs/' + document.getElementById("doc").value
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Python包\模块帮助</h1>
+    <input type="text" id="doc" oninput="update_iframe()" autocomplete="on" />
+    <button type="button" onclick="update_iframe()">显示</button><br><br>
+    <iframe id='view' scrolling='auto' seamless width="100%" height="1000" src="/python_doc/module_docs/"></iframe>
+</body>
+
+</html>

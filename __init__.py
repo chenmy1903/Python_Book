@@ -9,6 +9,9 @@ import uvicorn
 from pygments import highlight
 from pygments.lexers import get_lexer_for_filename
 from pygments.formatters.html import HtmlFormatter
+from importlib import import_module
+import pydoc
+from tkinter import ttk
 
 __version__ = '0.0.1'
 
@@ -46,6 +49,32 @@ def document(request: Request, doc_html_name: str = 'index.html'):
     return document_templates.TemplateResponse(doc_html_name, {'request': request})
 
 
+@app.get('/python_doc/module_docs/')
+@app.get('/python_doc/module_docs/{fun_name}')
+def python_doc_help(request: Request, fun_name: str = None):
+    if fun_name is None:
+        return templates.TemplateResponse('show_text.html', {'request': request,
+                                                             'text': '请在上方输入包名。', 'title': 'Python包文档'})
+    try:
+        m = import_module(fun_name)
+        try:
+            f = m.__file__
+        except AttributeError:
+            f = '无文件。'
+    except (ImportError, ModuleNotFoundError):
+        try:
+            m = eval(fun_name)
+        except Exception:
+            m = False
+            f = '查询出现错误。'
+        else:
+            f = '不是模块。'
+    return templates.TemplateResponse('show_text.html',
+                                      {'request': request, 'text': (f'原文件地址: {f}\n\n' + (pydoc.getdoc(m) if m
+                                       else '未找到此包或函数名。')) if not m or pydoc.getdoc(m) else f'{fun_name}无文档',
+                                       'title': fun_name + '的文档'})
+
+
 @app.get('/open_html/')
 def open_html(request: Request, url: str = None):
     return templates.TemplateResponse('open_html.html', {"request": request, 'url': url})
@@ -78,11 +107,9 @@ def command(request: Request, command_name: str):
     if command_name == 'IDLE':
         exec_file = os.path.join(sys.exec_prefix, 'pythonw')
         os.system(f'start {exec_file} -m idlelib')
+    elif command_name == 'python_doc_help':
+        return templates.TemplateResponse('python_doc_help.html', {'request': request})
     return templates.TemplateResponse('close.html', {'request': request})
-
-@app.get('/favicon.ico')
-def favicon_icon(request: Request):
-    return templates.TemplateResponse('open_html.html', {'request': request, 'url': '/static/favicon.png'})
 
 
 def clear_temp():
